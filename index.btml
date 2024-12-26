@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ortada Resim ve Söz</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #222;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .quote {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Resim -->
+    <img src="https://via.placeholder.com/300" alt="Bir Resim">
+
+    <!-- Söz -->
+    <div class="quote">"Hayatta kalmak için bazen yola çıkmak gerek."</div>
+
+    <!-- Şarkı -->
+    <audio autoplay loop>
+        <source src="/Norm-Ender-Ciktik-Yine-Yollara.mp3" type="audio/mpeg">
+        Tarayıcınız bu sesi desteklemiyor.
+    </audio>
+</body>
+</html>
