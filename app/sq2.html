@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DİZİ YOU / SQUİD GAME </title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+        }
+        .header {
+            background-color: #1e1e1e;
+            padding: 15px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+        .video-wrapper {
+            max-width: 800px;
+            margin: 20px auto;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .episode-list {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .episode-list button {
+            background-color: #1e1e1e;
+            border: 1px solid #444;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: calc(33.33% - 10px); /* Her sırada 3 buton olacak şekilde genişlik ayarlandı */
+        }
+        .episode-list button:hover {
+            background-color: #444;
+        }
+        .comments-disabled {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            text-align: center;
+            color: #888;
+            border: 1px solid #444;
+            border-radius: 5px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #1e1e1e;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #1e1e1e;
+            margin-top: 20px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>DİZİ YOU</h1>
+    </div>
+    <div class="container">
+        <div class="video-wrapper">
+            <iframe id="videoPlayer" src="https://play.diziyou.co/player/115601_tr.html" allowfullscreen></iframe>
+        </div>
+        <div class="episode-list">
+            <!-- Ana Sayfa Butonu (Bölüm Butonları ile aynı genişlikte) -->
+            <button class="wide-button" onclick="redirectToHomepage()">HOME</button>
+            <!-- Bölüm Düğmeleri -->
+            <button onclick="loadEpisode('https://play.diziyou.co/player/115601_tr.html')">Bölüm 1</button>
+            <button onclick="loadEpisode('https://play.diziyou.co/player/115602_tr.html')">Bölüm 2</button>
+            <button onclick="loadEpisode('https://play.diziyou.co/player/115603_tr.html')">Bölüm 3</button>
+            <button onclick="loadEpisode('https://play.diziyou.co/player/115604_tr.html')">Bölüm 4</button>
+            <button onclick="loadEpisode('https://play.diziyou.co/player/115605_tr.html')">Bölüm 5</button>
+            <button onclick="loadEpisode('https://play.diziyou.co/player/115606_tr.html')">Bölüm 6</button>
+            <button onclick="loadEpisode('https://play.diziyou.co/player/115607_tr.html')">Bölüm 7</button>
+        </div>
+        <div class="comments-disabled">
+            <p>
+                
+                
+                REKLAMI ATLA KISMINDA SÜRE ÇIKSA BİLE REKLAMA TIKLADIĞIN ZAMAN REKLAM ATLANIR <BR>
+                
+                
+                
+              
+             
+                </p>
+        </div>
+    </div>
+    <div class="footer">
+        <p>[ REPOXY ]</p>
+    </div>
+
+    <script>
+        // Bölüm yüklemek için fonksiyon
+        function loadEpisode(url) {
+            const videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.src = url;
+        }
+
+        // Ana Sayfa yönlendirme fonksiyonu
+        function redirectToHomepage() {
+            window.location.href = "/"; // Ana sayfa URL'sini buraya ekleyin
+        }
+    </script>
+</body>
+</html>
