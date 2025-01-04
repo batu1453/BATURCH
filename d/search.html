@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dünyanın En Güzel Kızı - Google Arama</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a202c, #2d3748);
+            color: #e2e8f0;
+        }
+
+        .header {
+            background: #2d3748;
+            border-bottom: 1px solid #4a5568;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .google-logo {
+            width: 120px;
+            filter: invert(1);
+            transition: transform 0.3s ease;
+        }
+
+        .google-logo:hover {
+            transform: scale(1.1) rotate(-3deg);
+        }
+
+        .search-bar-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 1px solid #4a5568;
+            border-radius: 50px;
+            background-color: #1a202c;
+            color: #e2e8f0;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:focus {
+            border-color: #63b3ed;
+            box-shadow: 0 0 10px rgba(99, 179, 237, 0.8);
+        }
+
+        .search-button {
+            background: linear-gradient(135deg, #3182ce, #63b3ed);
+            color: #ffffff;
+            border: none;
+            padding: 10px 25px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .search-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(50, 118, 195, 0.5);
+        }
+
+        .content {
+            max-width: 700px;
+            margin: 50px auto;
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .image {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
+        }
+
+        .text {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #63b3ed;
+        }
+
+        footer {
+            background: #2d3748;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #a0aec0;
+            border-top: 1px solid #4a5568;
+            margin-top: 50px;
+        }
+
+        footer:hover {
+            color: #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .google-logo {
+                width: 100px;
+            }
+
+            .search-bar {
+                font-size: 14px;
+            }
+
+            .search-button {
+                font-size: 14px;
+                padding: 8px 20px;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            .text {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header kısmı -->
+    <div class="header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/512px-Google_2015_logo.svg.png" 
+             alt="Google" class="google-logo">
+        <div class="search-bar-container">
+            <input type="text" class="search-bar" value="Dünyanın en güzel kızı :) " readonly>
+            <button class="search-button">Ara</button>
+        </div>
+    </div>
+
+    <!-- Arama Sonucu -->
+    <div class="content">
+        <img 
+            src="https://i.hizliresim.com/fzj17j6.jpg" 
+            alt="Dünyanın En Güzel Kızı" class="image">
+        <h7 class="text">aradığınız şeyi bulamadık ama Google'ın bile bilmediği bir şey var dünyanın en güzel kızı Dilaradır. 
+        <br>
+         seviliyorsun yavrumm <3 </p>
+    </div>
+
+    <!-- Footer kısmı -->
+    <footer>
+        Google'da Arama. © 2025
+    </footer>
+</body>
+</html>-
