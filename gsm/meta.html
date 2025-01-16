@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCH Mobile Hat Satış ve Aktifleşme</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(#1a1a1a, #292929);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background: linear-gradient(#4a148c, #6a1b9a);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .button:hover {
+            background: linear-gradient(#6a1b9a, #4a148c);
+        }
+
+        .input-group {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .input-group input {
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #555;
+            width: 200px;
+            margin-bottom: 15px;
+        }
+
+        .input-group button {
+            padding: 12px;
+            font-size: 1rem;
+            background: linear-gradient(#4a148c, #6a1b9a);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 200px;
+        }
+
+        .input-group button:hover {
+            background: linear-gradient(#6a1b9a, #4a148c);
+        }
+
+        /* Popup tasarımı */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #333;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .popup.active {
+            display: block;
+        }
+
+        .popup button {
+            background: #4caf50;
+            padding: 8px 20px;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .description {
+                font-size: 1rem;
+            }
+
+            .button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+
+            .input-group input,
+            .input-group button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>RCH Mobile Hat Satış ve Aktifleşme</h1>
+    <p class="description">RCH Mobile Hat Satış ve Aktifleşme işleminizi buradan gerçekleştirebilirsiniz.</p>
+    
+    <a href="#" class="button">Hattınızı Aktif Et</a>
+    
+    <div class="input-group">
+        <input type="text" id="username" placeholder="Kullanıcı Adı">
+        <input type="password" id="password" placeholder="Şifre">
+        <button onclick="validateLogin()">Aktifleştir</button>
+    </div>
+</div>
+
+<div class="popup" id="popup">
+    <h2>Doğrulandı</h2>
+    <p>Bizi tercih ettiğiniz için teşekkür ederiz!</p>
+    <button onclick="closePopup()">Tamam</button>
+</div>
+
+<script>
+    // Kullanıcı + Şifre eşleşmeleri
+    const users = [
+        { username: "ahmet", password: "baba" },
+        { username: "zeynep", password: "ibne" }
+    ];
+
+    function validateLogin() {
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+        
+        // Doğrulama
+        const isValid = users.some(user => user.username === username && user.password === password);
+        
+        if (isValid) {
+            const popup = document.getElementById("popup");
+            popup.classList.add("active");
+        } else {
+            alert("Geçersiz kullanıcı adı veya şifre!");
+        }
+    }
+
+    function closePopup() {
+        const popup = document.getElementById("popup");
+        popup.classList.remove("active");
+    }
+</script>
+
+</body>
+</html>
