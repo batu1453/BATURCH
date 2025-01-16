@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönlendirme Sayfası</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(to right, #1a1a1a, #292929); /* Arka plan rengi */
+            color: #fff;
+            text-align: center;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 250px; /* Genişlik */
+            max-width: 100%;
+            text-align: center;
+        }
+        .message {
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .description {
+            font-size: 18px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            color: #bbb;
+        }
+        .countdown {
+            font-size: 40px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #ffeb3b;
+        }
+        /* Buton rengi */
+        .button {
+            display: inline-block;
+            background: linear-gradient(to right, #4a148c, #6a1b9a);
+            color: white;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        .button:hover {
+            background: linear-gradient(to right, #6a1b9a, #4a148c); 
+        }
+        /* Geri sayım alt kısmı */
+        .countdown-wrapper {
+            position: absolute;
+            bottom: 20px;
+            font-size: 40px;
+            font-weight: bold;
+            color: #ffeb3b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message">
+            RCH MOBİLE
+        </div>
+        
+        <p>Hattınız başarıyla aktif edilmiştir <br><br>
+     😁</p>
+        
+        
+        
+        </div>
+        
+        
+        <p style="text-align: center;"><span style="font-size: xx-small;">
+
+             ANA SAYFAYA YÖNLENDİRİLİYORSUNUZ </span></p> 
+       <!-- Butona link eklendi -->
+    </div>
+    <div class="countdown-wrapper" id="countdown">5</div>
+
+    <script>
+        // Yönlendirme işlemi 5 saniye sonra gerçekleşecek
+        let countdownElement = document.getElementById('countdown');
+        let countdownValue = 5;
+
+        let countdownInterval = setInterval(function() {
+            countdownValue--;
+            countdownElement.textContent = countdownValue;
+            if (countdownValue <= 0) {
+                clearInterval(countdownInterval);
+                window.location.href = "https://www.orneksite.com"; // Yönlendirilmek istenen URL
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
