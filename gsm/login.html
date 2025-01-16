@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kod ile Giriş Yap</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+      text-align: center;
+    }
+
+    .header {
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      letter-spacing: 2px;
+    }
+
+    .header p {
+      font-size: 1rem;
+      color: #ccc;
+      margin-top: 5px;
+    }
+
+    .container {
+      text-align: center;
+      background: #121212;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+      width: 90%;
+      max-width: 350px;
+      margin-bottom: 20px;
+    }
+
+    .input-button-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: 280px;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      background: #222;
+      color: #fff;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      width: 260px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      background: linear-gradient(to bottom, #4a148c, #6a1b9a);
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin-bottom: 10px;
+    }
+
+    button:hover {
+      background: linear-gradient(to bottom, #6a1b9a, #4a148c);
+      transform: scale(1.05);
+    }
+
+    .button-card {
+      background: #1c1c1c;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+      margin-top: 20px;
+      width: 90%;
+      max-width: 350px;
+    }
+
+    .button-card button {
+      width: 310px; /* Genişlik 310px */
+      display: flex;
+      justify-content: space-between; /* İkonları sola ve sağa hizala */
+      align-items: center;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: #fff;
+      padding: 15px 20px;
+      border-radius: 5px;
+      font-size: 14px;
+      display: none;
+      z-index: 1000;
+    }
+
+    .toast.active {
+      display: block;
+      animation: fadeInOut 3s ease forwards;
+    }
+
+    @keyframes fadeInOut {
+      0%, 90% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    footer {
+      margin-top: 20px;
+      text-align: center;
+      color: #aaa;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>SİM KART AKTİFLEŞTİRME</h2>
+    <p>Size verilen bilgileri giriniz !</p>
+  </div>
+
+  <div class="container">
+    <div class="input-button-wrapper">
+      <input type="text" id="input1" placeholder="enter your UserName">
+      <input type="text" id="input2" placeholder="enter your PassWord">
+      <button onclick="validateCode()">GİRİŞ YAP</button>
+    </div>
+  </div>
+<center>
+  <!-- Kart içine alınmış 3 buton -->
+  <div class="button-card">
+    <button onclick="location.href='/gsm/doc.html'">
+        
+        
+        
+        
+      <i class="fas fa-info-circle"></i> KURULUM REHBERİ <i class="fas fa-info-circle"></i>
+    </button>
+    
+    
+    
+    
+    
+    
+    
+    <button onclick="location.href='/gsm/index.html'">
+      <i class="fas fa-home"></i> ANA SAYFA <i class="fas fa-home"></i>
+    </button>
+  
+  
+  
+  
+    <button onclick="location.href='https://wa.me/905053837904'">
+    
+    
+    
+    
+      <i class="fab fa-whatsapp"></i>DESTEK HATTI <i class="fab fa-whatsapp"></i>
+    </button>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <footer>© 2025 Tüm Hakları Saklıdır.</footer>
+
+  <script>
+    async function validateCode() {
+      const input1 = document.getElementById('input1').value.trim();
+      const input2 = document.getElementById('input2').value.trim();
+      const toast = document.getElementById('toast');
+
+      if (!input1 || !input2) {
+        showToast('HATA! Her iki kelimeyi de girin.');
+        return;
+      }
+
+      try {
+        const response = await fetch('/gsm/log.txt');
+        const text = await response.text();
+
+        const lines = text.split('\n');
+
+        const matchFound = lines.some(line => {
+          const [word1, word2] = line.split('+').map(item => item.trim());
+          return word1 === input1 && word2 === input2;
+        });
+
+        if (matchFound) {
+          showToast('Kod doğrulandı! Yönlendiriliyorsunuz...');
+          setTimeout(() => {
+            window.location.href = '/meta.html';
+          }, 2000);
+        } else {
+          showToast('HATA! Kod doğrulanamadı.');
+        }
+      } catch (error) {
+        showToast('HATA! Doğrulama yapılamıyor.');
+        console.error('Dosya okunamadı:', error);
+      }
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('active');
+
+      setTimeout(() => {
+        toast.classList.remove('active');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
