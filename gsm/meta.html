@@ -1,194 +1,226 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RCH Mobile Hat Satış ve Aktifleşme</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(#1a1a1a, #292929);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Numara Doğrulama</title>
+  <!-- Font Awesome CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+      text-align: center;
+    }
 
-        .container {
-            text-align: center;
-            max-width: 600px;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 40px;
-            border-radius: 10px;
-        }
+    .header {
+      margin-bottom: 30px;
+    }
 
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
+    .header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      letter-spacing: 2px;
+    }
 
-        .description {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-        }
+    .header p {
+      font-size: 1rem;
+      color: #ccc;
+      margin-top: 5px;
+    }
 
-        .button {
-            display: inline-block;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            background: linear-gradient(#4a148c, #6a1b9a);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background 0.3s ease;
-            margin-bottom: 20px;
-        }
+    .container {
+      text-align: center;
+      background: #121212;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+      width: 90%;
+      max-width: 350px;
+    }
 
-        .button:hover {
-            background: linear-gradient(#6a1b9a, #4a148c);
-        }
+    .input-button-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
 
-        .input-group {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
+    input[type="text"] {
+      width: 80%;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      background: #222;
+      color: #fff;
+      font-size: 16px;
+      margin-right: 10px;
+    }
 
-        .input-group input {
-            padding: 12px;
-            font-size: 1rem;
-            border-radius: 5px;
-            border: 1px solid #555;
-            width: 200px;
-            margin-bottom: 15px;
-        }
+    button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      background: linear-gradient(to bottom, #4a148c, #6a1b9a);
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin-bottom: 10px;
+    }
 
-        .input-group button {
-            padding: 12px;
-            font-size: 1rem;
-            background: linear-gradient(#4a148c, #6a1b9a);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 200px;
-        }
+    button i {
+      font-size: 18px;
+    }
 
-        .input-group button:hover {
-            background: linear-gradient(#6a1b9a, #4a148c);
-        }
+    button:hover {
+      background: linear-gradient(to bottom, #6a1b9a, #4a148c);
+      transform: scale(1.05);
+    }
 
-        /* Popup tasarımı */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #333;
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            z-index: 1000;
-        }
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
 
-        .popup.active {
-            display: block;
-        }
+    .button-container .card {
+      background: #121212;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+      margin-top: 20px;
+    }
 
-        .popup button {
-            background: #4caf50;
-            padding: 8px 20px;
-            border: none;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: #fff;
+      padding: 15px 20px;
+      border-radius: 5px;
+      font-size: 14px;
+      display: none;
+      z-index: 1000;
+    }
 
-        /* Mobile Responsiveness */
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-            }
+    .toast.active {
+      display: block;
+      animation: fadeInOut 3s ease forwards;
+    }
 
-            h1 {
-                font-size: 1.5rem;
-            }
+    @keyframes fadeInOut {
+      0%, 90% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
 
-            .description {
-                font-size: 1rem;
-            }
+    footer {
+      margin-top: 20px;
+      text-align: center;
+      color: #aaa;
+      font-size: 14px;
+    }
 
-            .button {
-                padding: 12px 25px;
-                font-size: 1rem;
-            }
-
-            .input-group input,
-            .input-group button {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-        }
-    </style>
+    .small-button {
+      padding: 8px 16px;
+      font-size: 18px;
+      width: auto;
+      background: linear-gradient(to bottom, #4a148c, #6a1b9a);
+      color: #fff;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
+  <div class="header">
+    <h1>Numara Doğrulama Sistemi</h1>
+    <p>Numaranızı girin ve doğrulayın!</p>
+  </div>
 
-<div class="container">
-    <h1>RCH Mobile Hat Satış ve Aktifleşme</h1>
-    <p class="description">RCH Mobile Hat Satış ve Aktifleşme işleminizi buradan gerçekleştirebilirsiniz.</p>
-    
-    <a href="#" class="button">Hattınızı Aktif Et</a>
-    
-    <div class="input-group">
-        <input type="text" id="username" placeholder="Kullanıcı Adı">
-        <input type="password" id="password" placeholder="Şifre">
-        <button onclick="validateLogin()">Aktifleştir</button>
+  <div class="container">
+    <div class="input-button-wrapper">
+      <input type="text" id="phoneInput" placeholder="Numaranızı girin">
+      <button class="small-button" onclick="validateNumber()">✓</button>
     </div>
-</div>
+  </div>
 
-<div class="popup" id="popup">
-    <h2>Doğrulandı</h2>
-    <p>Bizi tercih ettiğiniz için teşekkür ederiz!</p>
-    <button onclick="closePopup()">Tamam</button>
-</div>
+  <div class="button-container">
+    <div class="card">
+      <button onclick="location.href='/gsm/doc.html'">
+        <i class="fas fa-info-circle"></i> Kurulum Rehberi <i class="fas fa-info-circle"></i>
+      </button>
+      <button onclick="location.href='/gsm/index.html'">
+        <i class="fas fa-home"></i> ANA SAYFA <i class="fas fa-home"></i>
+      </button>
+      <button onclick="location.href='https://wa.me/3939282939'">
+        <i class="fab fa-whatsapp"></i> WhatsApp DESTEK HATTI <i class="fab fa-whatsapp"></i>
+      </button>
+    </div>
+  </div>
 
-<script>
-    // Kullanıcı + Şifre eşleşmeleri
-    const users = [
-        { username: "ahmet", password: "baba" },
-        { username: "zeynep", password: "ibne" }
-    ];
+  <div id="toast" class="toast"></div>
 
-    function validateLogin() {
-        const username = document.getElementById("username").value.trim();
-        const password = document.getElementById("password").value.trim();
-        
-        // Doğrulama
-        const isValid = users.some(user => user.username === username && user.password === password);
-        
-        if (isValid) {
-            const popup = document.getElementById("popup");
-            popup.classList.add("active");
+  <footer>© 2025 Tüm Hakları Saklıdır.</footer>
+
+  <script>
+    async function validateNumber() {
+      const input = document.getElementById('phoneInput').value.trim();
+      const toast = document.getElementById('toast');
+
+      if (!input) {
+        showToast('HATA! Numara boş bırakılamaz.');
+        return;
+      }
+
+      if (!input.startsWith('+') && !input.startsWith('44')) {
+        showToast('HATA! Numaraya +44 ekleyiniz.');
+        return;
+      }
+
+      try {
+        const response = await fetch('/gsm/no.txt');
+        const text = await response.text();
+
+        if (text.includes(input)) {
+          showToast('Numara doğrulandı! Yönlendiriliyorsunuz...');
+          setTimeout(() => {
+            window.location.href = '/gsm/yonlendir.html';
+          }, 2000);
         } else {
-            alert("Geçersiz kullanıcı adı veya şifre!");
+          showToast('HATA! Numara doğrulanamadı.');
         }
+      } catch (error) {
+        showToast('HATA! Doğrulama yapılamıyor.');
+        console.error('Dosya okunamadı:', error);
+      }
     }
 
-    function closePopup() {
-        const popup = document.getElementById("popup");
-        popup.classList.remove("active");
-    }
-</script>
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('active');
 
+      setTimeout(() => {
+        toast.classList.remove('active');
+      }, 3000);
+    }
+  </script>
 </body>
 </html>
