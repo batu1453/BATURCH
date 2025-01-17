@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RCH Mobile SIM Kart Satış</title>
+  <style>
+    /* GENEL STİLLER */
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 24px;
+      color: #e91e63;
+      margin-bottom: 20px;
+    }
+
+    .description {
+      text-align: center;
+      font-size: 16px;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    /* "Ana Sayfa", "Kurulum", ve "Yorumlar" butonlarını aynı renklerde yap */
+    .nav-buttons .btn {
+      padding: 10px;
+      font-size: 16px;
+      color: #fff;
+      background: linear-gradient(to bottom, #4a148c, #6a1b9a); /* Satın Al ile aynı renk */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+
+    .nav-buttons .btn:hover {
+      background: linear-gradient(to bottom, #6a1b9a, #4a148c); /* Hover renk değişimi */
+    }
+
+    /* "Kurulum" ve "Yorumlar" butonlarını 100% genişlikte */
+    .nav-buttons .btn-wide {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+
+    .btn-wide:hover {
+      background: linear-gradient(to bottom, #6a1b9a, #4a148c); /* Hover renk değişimi */
+    }
+
+    .sim-card {
+      background-color: #222;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    }
+
+    .sim-card h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #ccc;
+    }
+
+    .sim-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sim-card ul li {
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+    }
+
+    .sim-card ul li i {
+      color: #6a1b9a;
+      margin-right: 10px;
+    }
+
+    .sim-card .price {
+      font-size: 18px;
+      color: #4caf50;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .btn-buy {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      color: #fff;
+      background: linear-gradient(to bottom, #4a148c, #6a1b9a); /* Satın Al butonu rengi */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+
+    .btn-buy:hover {
+      background: linear-gradient(to bottom, #6a1b9a, #4a148c); /* Hover renk değişimi */
+    }
+
+    /* Telif Hakları */
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Ana İçerik -->
+  <div class="container">
+    <h1>RCH MOBİLE SIM KART</h1>
+    <div class="description">En iyi SIM kart fırsatlarını keşfedin!</div>
+
+    <div class="nav-buttons">
+      <button class="btn" onclick="window.location.href='ana-sayfa.html'">SİM KART KURULUM</button>
+    </div>
+    
+    <div class="nav-buttons">
+      <button class="btn" onclick="window.location.href='ana-sayfa.html'">SİM AKTİFLEŞTİRME</button>
+    </div>
+
+    <div class="sim-card">
+      <center><h2>SHOPİER İLE SATIN AL</h2></center>
+      <ul>
+        <li><i>✔</i> Güvenli alışveriş sağlanır</li>
+        <li><i>✔</i> Kargo alıcı tarafından ödenir</li>
+        <li><i>✔</i> Özel müşteri desteği</li>
+        <li><i>✔</i> 12 saat içinde onay garantisi</li>
+      </ul>
+      <p class="price">550₺ + Kargo</p>
+      <button class="btn-buy" onclick="window.location.href='https://shopier.com/32467582'">Satın Al</button>
+    </div>
+
+    <div class="sim-card">
+      <center><h2>WHATSAPP İLE SATIN AL</h2></center>
+      <ul>
+        <li><i>✔</i> WhatsApp üzerinden arama imkanı</li>
+        <li><i>✔</i> Satıcı ile diyalog halinde olun</li>
+        <li><i>✔</i> 12 saat içinde onay garantisi</li>
+        <li><i>✔</i> Özel müşteri desteği</li>
+      </ul>
+      <p class="price">500₺ + Kargo</p>
+      <button class="btn-buy" onclick="window.location.href='https://wa.me/905053837904'">Satın Al</button>
+    </div>
+
+    <div class="sim-card">
+      <center><h2>MAĞAZAMIZDAN SATIN ALIN</h2></center>
+      <ul>
+        <li><i>✔</i> Kütahya/Domaniç</li>
+        <li><i>✔</i> İstanbul/Küçükçekmece</li>
+        <li><i>✔</i> Yüz yüze müşteri memnuniyeti</li>
+        <li><i>✔</i> Komisyonsuz alma imkanı</li>
+        <li><i>✔</i> Nakit alışveriş imkanı</li>
+      </ul>
+      <p class="price">400₺</p>
+      <button class="btn-buy" onclick="window.location.href='https://wa.me/905053837904'">Satın Al</button>
+    </div>
+  </div>
+
+  <!-- Telif Hakkı -->
+  <div class="footer">© 2025 RCH Mobile. Tüm hakları saklıdır.</div>
+</body>
+</html>
