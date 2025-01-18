@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kullanıcı Girişi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+    }
+
+    .container {
+      background-color: #1e1e1e;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      width: 380px;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    .container:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      transform: translateY(-10px);
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      border: 2px solid #444;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      background-color: #2a2a2a;
+      color: #fff;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input[type="text"]:focus, input[type="password"]:focus {
+      border-color: #5e2a83;
+      outline: none;
+      box-shadow: 0 0 8px rgba(94, 42, 131, 0.5);
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #5e2a83;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      margin-bottom: 10px;
+    }
+
+    button:hover {
+      background-color: #4a1f6f;
+      transform: scale(1.05);
+    }
+
+    .warning-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+  <script>
+    async function loadUsers() {
+      const response = await fetch('/app/pass.txt'); // Şifre dosyasını okuma
+      const text = await response.text();
+      const lines = text.split('\n'); // Her satırı ayır
+
+      const userDatabase = {};
+      lines.forEach(line => {
+        const [user, passwordWithLink] = line.split(' + ');
+        if (passwordWithLink) {
+          const [password, link] = passwordWithLink.split(' = ');
+          userDatabase[user.trim()] = { password: password.trim(), link: link.trim() };
+        }
+      });
+
+      return userDatabase;
+    }
+
+    async function login() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const warningMessage = document.getElementById('warningMessage');
+
+      warningMessage.innerHTML = ''; // Uyarıyı temizle
+
+      // Kullanıcı verilerini yükle
+      const userDatabase = await loadUsers();
+
+      if (!username || !password) {
+        warningMessage.innerHTML = 'Lütfen kullanıcı adı ve şifre girin!';
+        return;
+      }
+
+      if (userDatabase[username] && userDatabase[username].password === password) {
+        // Şifre doğru, yönlendirme yapılır
+        window.location.href = userDatabase[username].link;
+      } else {
+        // Hatalı giriş
+        warningMessage.innerHTML = 'Kullanıcı adı veya şifre hatalı!';
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Giriş Yap</h2>
+    <input type="text" id="username" placeholder="Kullanıcı adı girin">
+    <input type="password" id="password" placeholder="Şifre girin">
+    <button onclick="login()">Giriş Yap</button>
+
+    <!-- Uyarı mesajı buraya eklenecek -->
+    <div id="warningMessage" class="warning-message"></div>
+  </div>
+
+</body>
+</html>
