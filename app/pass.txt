@@ -1,2 +1,3 @@
 Yusuf + 12345 = /meme.php
 Ahmet + 3453 = go:home
+rat1 + ratpass = go:galeryrat
