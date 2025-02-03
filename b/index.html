@@ -84,10 +84,10 @@
         document.getElementById('searchInput').addEventListener('keydown', function(event) {
             if (event.key === 'Enter') {
                 const query = this.value.toLowerCase(); // Kullanıcının yazdığı metni al
-                if (query.includes('dilara') || query.includes('dılara')) {
+                if (query.includes('betül') || query.includes('dılara')) {
                     window.location.href = '/d/search.html';
                 } else {
-                    window.location.href = '/d/search.html';
+                    window.location.href = '/b/search.html';
                 }
             }
         });
