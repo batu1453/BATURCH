@@ -2,6 +2,235 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
+  <!-- Mobil uyumlu, sayfa büyütmeyi engelleyen meta etiketi -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Butonlar ve Telegram Bildirimi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    /* Tüm elementlerde kopyalama ve metin seçimini engelle */
+    * {
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #121212;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+      text-align: center;
+    }
+    .hidden {
+      display: none;
+    }
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+    button {
+      background-color: #9C27B0; /* Mor */
+      color: white;
+      border: none;
+      padding: 12px;
+      margin: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 250px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    button:hover {
+      background-color: #7B1FA2; /* Daha koyu mor */
+    }
+    button:disabled {
+      background-color: #4A0072; /* Kilitli buton için daha koyu mor */
+      cursor: not-allowed;
+    }
+    .icon {
+      font-size: 18px;
+      color: white;
+    }
+    /* Basit Toast stili */
+    #toast {
+      visibility: hidden;
+      min-width: 250px;
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      border-radius: 5px;
+      padding: 16px;
+      position: fixed;
+      z-index: 1;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    #toast.show {
+      visibility: visible;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+    @keyframes fadein {
+      from {bottom: 0; opacity: 0;}
+      to {bottom: 30px; opacity: 1;}
+    }
+    @keyframes fadeout {
+      from {bottom: 30px; opacity: 1;}
+      to {bottom: 0; opacity: 0;}
+    }
+    /* Form stili */
+    #usernameForm {
+      margin-top: 20px;
+    }
+    #usernameInput {
+      padding: 10px;
+      width: 200px;
+      border: none;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+    #submitUsername {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #9C27B0;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    #submitUsername:hover {
+      background-color: #7B1FA2;
+    }
+  </style>
+</head>
+<body>
+  <!-- Üstte yuvarlak resim -->
+  <img src="https://via.placeholder.com/150" alt="Profil Resmi">
+  
+  <!-- Başlangıç Butonu ve Bilgilendirme Yazısı -->
+  <button id="startButton" onclick="showButtons()">Başla</button>
+  <p id="infoText">Başlamak için butona tıklayın</p>
+  
+  <!-- Buton 1 ve Buton 2 (ilk başta gizli) -->
+  <button id="button1" class="hidden" onclick="validateButton(1)">
+    <i class="fa-solid fa-link icon"></i> Buton 1
+  </button>
+  <button id="button2" class="hidden" disabled onclick="showUsernameForm()">
+    <i id="lock-icon" class="fa-solid fa-lock icon"></i> Buton 2 (Kilitli)
+  </button>
+  
+  <!-- Kullanıcı Adı Girişi için Form (ilk başta gizli) -->
+  <div id="usernameForm" class="hidden">
+    <input type="text" id="usernameInput" placeholder="Kullanıcı Adınız" />
+    <button id="submitUsername" onclick="submitUsername()">Gönder</button>
+  </div>
+  
+  <!-- Toast mesajı -->
+  <div id="toast">BAŞARIYLA ÇEKİLİŞE KATILDINIZ</div>
+  
+  <script>
+    // Kopyalamayı ve sağ tıklamayı engelle
+    document.addEventListener('contextmenu', event => event.preventDefault());
+    document.addEventListener('copy', event => event.preventDefault());
+
+    // Telegram Bot Bilgileri
+    const telegramToken = "8140556503:AAGlIirMb8cIV9Ws-ylslGIxC2xHIldEnYo";
+    const telegramChatID = "-1002339339701";
+    
+    // Başla butonuna tıklandığında başlangıç elemanlarını gizle, diğer butonları göster.
+    function showButtons() {
+      document.getElementById("startButton").classList.add("hidden");
+      document.getElementById("infoText").classList.add("hidden");
+      document.getElementById("button1").classList.remove("hidden");
+      document.getElementById("button2").classList.remove("hidden");
+    }
+    
+    // Buton 1 tıklaması: Yeni sekmede link açılır, 5 saniye sonra doğrulama gerçekleşir.
+    function validateButton(buttonNumber) {
+      if (buttonNumber === 1) {
+        window.open("https://www.Tom1à.com", "_blank");
+        setTimeout(function() {
+          let btn1 = document.getElementById("button1");
+          btn1.innerHTML = '<i class="fa-solid fa-check-circle icon"></i> DOĞRULANDI';
+          btn1.style.backgroundColor = "#4CAF50"; // Yeşil renk
+          let btn2 = document.getElementById("button2");
+          btn2.disabled = false;
+          document.getElementById("lock-icon").className = "fa-solid fa-unlock icon"; // Açık kilit ikonu
+          btn2.innerHTML = '<i class="fa-solid fa-unlock icon"></i> Buton 2';
+        }, 5000);
+      }
+    }
+    
+    // Buton 2 tıklanınca kullanıcı adı formunu göster.
+    function showUsernameForm() {
+      document.getElementById("usernameForm").classList.remove("hidden");
+    }
+    
+    // Kullanıcı adı gönderimi: Telegram API aracılığıyla mesaj gönder, ardından toast mesaj göster.
+    function submitUsername() {
+      const username = document.getElementById("usernameInput").value.trim();
+      if (username === "") {
+        alert("Lütfen kullanıcı adınızı girin.");
+        return;
+      }
+      
+      // Telegram API'ye gönderilecek mesaj: "#tiktok" ifadesi eklendi.
+      const message = `Kullanıcı Adı: ${username}\n#tiktok`;
+      
+      // Telegram API'ye POST isteği gönderiyoruz.
+      fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          chat_id: telegramChatID,
+          text: message
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Mesaj gönderildiyse toast mesajı göster.
+        showToast();
+        // Formu gizle.
+        document.getElementById("usernameForm").classList.add("hidden");
+      })
+      .catch(error => {
+        console.error("Telegram mesajı gönderilemedi:", error);
+        alert("Mesaj gönderilirken bir hata oluştu.");
+      });
+    }
+    
+    // Basit toast fonksiyonu
+    function showToast() {
+      const toast = document.getElementById("toast");
+      toast.className = "show";
+      setTimeout(() => {
+        toast.className = toast.className.replace("show", "");
+      }, 3000);
+    }
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Butonlar ve Telegram Bildirimi</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
