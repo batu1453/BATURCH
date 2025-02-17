@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plaka Sorgulama</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #121212;
+            color: white;
+            flex-direction: column;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 250px;
+            text-align: center;
+            border-radius: 5px;
+            border: 1px solid #333;
+            outline: none;
+            background-color: #222;
+            color: white;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #1e88e5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1565c0;
+        }
+        #sonuc {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="text" id="sorgu" placeholder="Plaka veya İsim Girin">
+    <button onclick="sorgula()">SORGULA</button>
+    
+    <div id="sonuc"></div>
+
+    <script>
+        async function sorgula() {
+            let input = document.getElementById("sorgu").value.trim().toUpperCase();
+            let sonucDiv = document.getElementById("sonuc");
+            sonucDiv.innerHTML = "Sorgulanıyor...";
+
+            try {
+                let response = await fetch("/o/plaka.txt");
+                let data = await response.text();
+
+                let satirlar = data.split("\n");
+                let sonuc = "Sonuç bulunamadı.";
+
+                for (let satir of satirlar) {
+                    let match = satir.match(/\((\d+), '(.+?)', '(.+?)',/);
+                    if (match) {
+                        let plaka = match[2].toUpperCase();
+                        let isim = match[3].toUpperCase();
+
+                        if (plaka === input || isim === input) {
+                            sonuc = `
+                                <p>ADI: <b>${isim}</b></p>
+                                <p>PLAKASI: <b>${plaka}</b></p>
+                                <p>Powered by: @RCHMOBiLE</p>
+                            `;
+                            break;
+                        }
+                    }
+                }
+
+                sonucDiv.innerHTML = sonuc;
+            } catch (error) {
+                sonucDiv.innerHTML = "Veri alınamadı.";
+            }
+        }
+    </script>
+
+</body>
+</html>
