@@ -1,1 +1,200 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batuhan Kılıç - Biyografi</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
 
+        body {
+            background-color: #000; /* Siyah arka plan */
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 10px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 320px; /* Küçük ekranlara daha uygun */
+            text-align: center;
+        }
+
+        header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #6a0dad;
+            box-shadow: 0 0 10px #6a0dad;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-size: 1.8em;
+            color: #9b59b6;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background: linear-gradient(135deg, #6a0dad, #9b59b6);
+            color: white;
+            border: none;
+            padding: 12px;
+            margin: 7px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 10px rgba(155, 89, 182, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(155, 89, 182, 0.5);
+        }
+
+        .btn i {
+            margin: 0 8px;
+            font-size: 1.2em;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #111;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 280px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .popup input, .popup button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: none;
+        }
+
+        .popup button {
+            background: linear-gradient(135deg, #6a0dad, #9b59b6);
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            box-shadow: 0 4px 10px rgba(155, 89, 182, 0.3);
+        }
+
+        .popup button:hover {
+            transform: scale(1.05);
+        }
+
+        .popup .note {
+            font-size: 12px;
+            color: red;
+            margin-top: 5px;
+        }
+
+        .copyright {
+            margin-top: 10px;
+            font-size: 12px;
+            color: gray;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <img src="https://i.hizliresim.com/6a6gv1y.jpg" alt="Logo">
+            <h1>Batuhan Kılıç</h1>
+            <p>Anonim mesaj gönder veya sosyal medyada bağlantı kur.</p>
+        </header>
+
+        <div class="buttons">
+            <button class="btn" onclick="openPopup()">
+                <i class="fas fa-envelope"></i> ANONİM MESAJ GÖNDER <i class="fas fa-paper-plane"></i>
+            </button>
+            <button class="btn" onclick="window.location.href='https://instagram.com/baturch'">
+                <i class="fab fa-instagram"></i> INSTAGRAM <i class="fas fa-arrow-right"></i>
+            </button>
+            <button class="btn" onclick="window.location.href='https://wa.me/905053837904'">
+                <i class="fab fa-whatsapp"></i> WHATSAPP <i class="fas fa-arrow-right"></i>
+            </button>
+            <button class="btn" onclick="toggleTiktok(this)">
+                <i class="fab fa-tiktok"></i> TİKTOK <i class="fas fa-arrow-right"></i>
+            </button>
+            <button class="btn" onclick="window.location.href='mailto:baturch@icloud.com'">
+                <i class="fas fa-envelope"></i> E-POSTA <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <div class="copyright">
+            © 2025 Batuhan Kılıç. Tüm hakları saklıdır.
+        </div>
+    </div>
+
+    <div class="popup" id="popup">
+        <p>Mesajınızı girin:</p>
+        <input type="text" id="message" placeholder="Mesajınızı yazın...">
+        <button onclick="sendMessage()">Gönder</button>
+        <p class="note">powered by ngl.link</p>
+    </div>
+
+    <script>
+        function openPopup() {
+            document.getElementById("popup").style.display = "block";
+        }
+
+        function sendMessage() {
+            let message = document.getElementById("message").value;
+            if (message.trim() !== "") {
+                let botToken = "7504303603:AAHH-BWZNs9jWhFTCYVZj3_uvBb25fgbLmc";
+                let chatId = "7742105278";
+                let url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent("ANONİM MESAJ: " + message)}`;
+                
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => alert("Mesaj gönderildi!"))
+                    .catch(error => alert("Hata oluştu!"));
+                
+                document.getElementById("popup").style.display = "none";
+            } else {
+                alert("Lütfen bir mesaj yazın.");
+            }
+        }
+
+        function toggleTiktok(button) {
+            button.innerHTML = '<i class="fab fa-tiktok"></i> KULLANIYORUM <i class="fas fa-check"></i>';
+        }
+    </script>
+
+</body>
+</html>
